@@ -6,7 +6,7 @@ public class ListaEnc<T extends Comparable<T>> extends Lista<T> {
 
 	public void incluir(T elemento) {
 		No novo = new No(elemento);
-		if (inicio == (null)) {
+		if (inicio == null) {
 			inicio = novo;
 		} else {
 			No inclusor = inicio;
@@ -29,6 +29,9 @@ public class ListaEnc<T extends Comparable<T>> extends Lista<T> {
 			novo.setProximo(inicio);
 			inicio = novo;
 		} else {
+			if (posicao <= 0) {
+				throw new PosicaoInvalidaException();
+			}
 			try {
 				No inclusor = inicio;
 				int posicaoatual = 1;
@@ -45,6 +48,9 @@ public class ListaEnc<T extends Comparable<T>> extends Lista<T> {
 	}
 
 	public T get(int posicao) throws PosicaoInvalidaException {
+		if (posicao <= 0) {
+			throw new PosicaoInvalidaException();
+		}
 		try {
 			No elemento = inicio;
 			int posicaoatual = 1;
@@ -73,7 +79,9 @@ public class ListaEnc<T extends Comparable<T>> extends Lista<T> {
 	}
 
 	public void remover(int posicao) throws PosicaoInvalidaException {
-		if (posicao == 1) {
+		if (posicao <= 0) {
+			throw new PosicaoInvalidaException();
+		} else if (posicao == 1) {
 			inicio = inicio.getProximo();
 		} else {
 			try {

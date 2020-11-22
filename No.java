@@ -4,6 +4,7 @@ public class No {
 
 	private Object info;
 	private No proximo;
+	private No anterior;
 
 	public No(Object info) {
 		this.info = info;
@@ -23,5 +24,13 @@ public class No {
 
 	public void setProximo(No proximo) {
 		this.proximo = proximo;
+	}
+
+	public No getAnterior() {
+		return anterior;
+	}
+
+	public void setAnterior(No anterior) {
+		this.anterior = anterior;
 	}
 }

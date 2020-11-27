@@ -4,6 +4,7 @@ public class ListaEnc<T extends Comparable<T>> extends Lista<T> {
 
 	private No inicio;
 
+	@Override
 	public void incluir(T elemento) {
 		No novo = new No(elemento);
 		if (inicio == null) {
@@ -17,12 +18,14 @@ public class ListaEnc<T extends Comparable<T>> extends Lista<T> {
 		}
 	}
 
+	@Override
 	public void incluirInicio(T elemento) {
 		No novo = new No(elemento);
 		novo.setProximo(inicio);
 		inicio = novo;
 	}
 
+	@Override
 	public void incluir(T elemento, int posicao) throws PosicaoInvalidaException {
 		No novo = new No(elemento);
 		if (posicao == 1) {
@@ -47,6 +50,7 @@ public class ListaEnc<T extends Comparable<T>> extends Lista<T> {
 		}
 	}
 
+	@Override
 	public T get(int posicao) throws PosicaoInvalidaException {
 		if (posicao <= 0) {
 			throw new PosicaoInvalidaException();
@@ -64,6 +68,7 @@ public class ListaEnc<T extends Comparable<T>> extends Lista<T> {
 		}
 	}
 
+	@Override
 	public int get(T elemento) throws ElementoInvalidoException {
 		try {
 			No percorrer = inicio;
@@ -78,6 +83,7 @@ public class ListaEnc<T extends Comparable<T>> extends Lista<T> {
 		}
 	}
 
+	@Override
 	public void remover(int posicao) throws PosicaoInvalidaException {
 		if (posicao <= 0) {
 			throw new PosicaoInvalidaException();
@@ -98,10 +104,12 @@ public class ListaEnc<T extends Comparable<T>> extends Lista<T> {
 		}
 	}
 
+	@Override
 	public void limpar() {
 		inicio = null;
 	}
 
+	@Override
 	public int getTamanho() {
 		if (inicio == null) {
 			return 0;
@@ -116,6 +124,7 @@ public class ListaEnc<T extends Comparable<T>> extends Lista<T> {
 		}
 	}
 
+	@Override
 	public boolean contem(T elemento) {
 		No percorrer = inicio;
 		while (percorrer != null) {

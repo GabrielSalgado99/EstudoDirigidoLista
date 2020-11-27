@@ -1,21 +1,12 @@
 package Lista;
 
-public class No {
+public class No<T> {
 
-	private Object info;
 	private No proximo;
-	private No anterior;
+	private T info;
 
-	public No(Object info) {
-		this.info = info;
-	}
-
-	public Object getInfo() {
-		return info;
-	}
-
-	public void setInfo(Object info) {
-		this.info = info;
+	public No(T elemento) {
+		info = elemento;
 	}
 
 	public No getProximo() {
@@ -26,11 +17,12 @@ public class No {
 		this.proximo = proximo;
 	}
 
-	public No getAnterior() {
-		return anterior;
+	public T getInfo() {
+		return info;
 	}
 
-	public void setAnterior(No anterior) {
-		this.anterior = anterior;
+	public void setInfo(T info) {
+		this.info = info;
 	}
+
 }

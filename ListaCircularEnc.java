@@ -1,6 +1,6 @@
 package Lista;
 
-public class ListaDupEnc<T extends Comparable<T>> extends Lista<T> {
+public class ListaCircularEnc<T extends Comparable<T>> extends Lista<T> {
 
 	private NoDup inicio;
 	private NoDup fim;
@@ -16,11 +16,15 @@ public class ListaDupEnc<T extends Comparable<T>> extends Lista<T> {
 			novo.setAnterior(inicio);
 			inicio.setProximo(novo);
 			fim = novo;
+			inicio.setAnterior(fim);
+			fim.setProximo(inicio);
 			tamanho++;
 		} else {
 			fim.setProximo(novo);
 			novo.setAnterior(fim);
 			fim = novo;
+			inicio.setAnterior(fim);
+			fim.setProximo(inicio);
 			tamanho++;
 		}
 	}
@@ -37,11 +41,13 @@ public class ListaDupEnc<T extends Comparable<T>> extends Lista<T> {
 			novo.setProximo(inicio);
 			fim = inicio;
 			inicio = novo;
+			fim.setProximo(inicio);
 			tamanho++;
 		} else {
 			inicio.setAnterior(novo);
 			novo.setProximo(inicio);
 			inicio = novo;
+			inicio.setAnterior(fim);
 			tamanho++;
 		}
 	}
@@ -59,23 +65,28 @@ public class ListaDupEnc<T extends Comparable<T>> extends Lista<T> {
 				inicio.setAnterior(novo);
 				fim = inicio;
 				inicio = novo;
+				fim.setProximo(inicio);
 				tamanho++;
 			} else {
 				inicio.setAnterior(novo);
 				novo.setProximo(inicio);
 				inicio = novo;
+				inicio.setAnterior(fim);
 				tamanho++;
 			}
 		} else if (posicao == tamanho && tamanho > 0) {
 			if (fim == null) {
 				fim = novo;
 				fim.setAnterior(inicio);
+				fim.setProximo(inicio);
 				inicio.setProximo(fim);
+				inicio.setAnterior(inicio);
 				tamanho++;
 			} else {
 				fim.setProximo(novo);
 				novo.setAnterior(fim);
 				fim = novo;
+				fim.setProximo(inicio);
 				tamanho++;
 			}
 		} else if (posicao <= 0 || posicao > tamanho) {
@@ -150,10 +161,11 @@ public class ListaDupEnc<T extends Comparable<T>> extends Lista<T> {
 			throw new PosicaoInvalidaException();
 		} else if (posicao == 1) {
 			inicio = inicio.getProximo();
+			inicio.setAnterior(fim);
 			tamanho--;
 		} else if (posicao == tamanho) {
 			fim = fim.getAnterior();
-			fim.setProximo(null);
+			fim.setProximo(inicio);
 			tamanho--;
 		} else {
 			if (posicao < tamanho / 2) {
@@ -199,4 +211,5 @@ public class ListaDupEnc<T extends Comparable<T>> extends Lista<T> {
 		}
 		return false;
 	}
+
 }
